@@ -3,15 +3,15 @@ import pytest
 import os
 
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service
 
-chrome_driver = "C:/Users/IIoT_Lab/PycharmProjects/flaskProject/tests/functional_tests/yandexdriver.exe" if "ChromeWebDriver" not in os.environ.keys() else os.path.join(
-    os.environ["ChromeWebDriver"], 'chromedriver.exe')
+chrome_driver = "C:/Users/rusBlackSun/Documents/GitHub/PipelinePractice/tests/functional_tests/yandexdriver.exe"
 
 
 class TestBackend:
 
-    def setup(self):
-        self.driver = webdriver.Chrome(chrome_driver)
+    def setup_class(self):
+        self.driver = webdriver.Chrome(service=Service(chrome_driver))
 
     def test_add(self, url):
         self.driver.get(f'{url}/add/1&2')
